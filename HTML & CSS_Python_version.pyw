@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter.messagebox import *
 import tkinter.filedialog
 
-win = tk.Tk()                       #f = open(str(path_va.get() + path_two), "a")    f.close()
+win = tk.Tk()                       
 win.title('HTML & CSS')
 win.geometry("1920x1080")
 
