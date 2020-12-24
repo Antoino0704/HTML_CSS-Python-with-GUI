@@ -423,7 +423,7 @@ def tabella():
     casellainizio_button = tk.Button(tatk, text='aggiungi casella', command=caselleinizio)       #pulsante per aggiungere casella
     casellainizio_button.place(y='150', x='250')
 
-    casellafine_button = tk.Button(tatk, text='fine casella', command=casellafine)       #pulsante per aggiungere testo a elenco 
+    casellafine_button = tk.Button(tatk, text='fine casella', command=casellafine)       #pulsante per chiudere casella
     casellafine_button.place(y='150', x='650')
 
     p2_button = tk.Button(tatk, text='salva tabella', command=t_html)       #pulsante per salvare tabella
