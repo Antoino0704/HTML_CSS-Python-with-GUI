@@ -237,7 +237,7 @@ def link():
     l_button.place(y='150', x='250')
 
 linkb = tk.Button(text='aggiungi link', command=link)
-linkb.grid(row='7', column='1', stick='W')
+linkb.grid(row='7', column='1', stick='W' , pady='10')
 
 
 #video
@@ -259,7 +259,7 @@ def video():
     v_button.place(y='150', x='250')
 
 videob = tk.Button(text='aggiungi video', command=video)
-videob.grid(row='7', column='1', stick='W')
+videob.grid(row='8', column='1', stick='W', pady='30')
 
 
 
@@ -282,7 +282,7 @@ def musica():
     m_button.place(y='150', x='250')
 
 musicab = tk.Button(text='aggiungi audio', command=musica)
-musicab.grid(row='8', column='1', stick='W')
+musicab.grid(row='9', column='1', stick='W')
 
 
 #elenco non numerato
@@ -328,7 +328,7 @@ def elenco_non_numerato():
     eo2_button.place(y='150', x='700')
 
 elenco_non_numeratob = tk.Button(text='aggiungi elenco non numerato', command=elenco_non_numerato)
-elenco_non_numeratob.grid(row='9', column='1', pady='50', stick='W')
+elenco_non_numeratob.grid(row='10', column='1', pady='20', stick='W')
 
 
 
@@ -375,7 +375,7 @@ def elenco_numerato():
     eo2_button.place(y='150', x='700')
 
 elenco_numeratob = tk.Button(text='aggiungi elenco numerato', command=elenco_numerato)
-elenco_numeratob.grid(row='10', column='1', pady='50', stick='W')
+elenco_numeratob.grid(row='11', column='1', pady='20', stick='W')
 
 
 def tabella():
@@ -430,7 +430,7 @@ def tabella():
     p2_button.place(y='150', x='1050')
 
 tabellab = tk.Button(text='aggiungi tabella', command=tabella)
-tabellab.grid(row='11', column='1', pady='50', stick='W')
+tabellab.grid(row='12', column='1', pady='30', stick='W')
 
 
 
