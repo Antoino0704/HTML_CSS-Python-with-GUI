@@ -7,6 +7,7 @@ win = tk.Tk()
 win.title('HTML & CSS')
 win.geometry("1920x1080")
 win.configure(bg='black')
+win.iconbitmap('icon.ico')
 
 #schermata informazioni
 showinfo('Importante', 'segui i vari step in ordine, quelli senza numero possono essere fatti dopo quelli col numero e in maniera indipendente il loro ordine')
