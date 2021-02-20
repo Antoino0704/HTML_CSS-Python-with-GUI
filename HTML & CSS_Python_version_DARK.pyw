@@ -9,6 +9,25 @@ win.geometry("1920x1080")
 win.configure(bg='black')
 win.iconbitmap('icon.ico')
 
+#creazione di una scroll bar
+frameMain = tk.Frame(win)
+frameMain.pack(fill=tk.BOTH, expand=True)
+
+canvars = tk.Canvas(frameMain)
+canvars.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+scrollbar = tk.Scrollbar(frameMain, orient=tk.VERTICAL, command=canvars.yview)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+canvars.configure(yscrollcommand=scrollbar.set, bg='black')
+canvars.bind('<Configure>', lambda e: canvars.configure(scrollregion=canvars.bbox("all")))
+
+frameTwo = tk.Frame(canvars)
+frameTwo.configure(bg='black')
+
+canvars.create_window((0, 0), window=frameTwo, anchor="nw")
+
+
 #schermata informazioni
 showinfo('Importante', 'segui i vari step in ordine, quelli senza numero possono essere fatti dopo quelli col numero e in maniera indipendente il loro ordine')
 showinfo('Importante', 'puoi inserire come sfondo o il colore o l\'immagine non tutti e due')
@@ -30,17 +49,17 @@ def percorso_real():
     f.close()
 
 
-percorso = tk.Button(text='salva', command=percorso_real, fg='white')
+percorso = tk.Button(frameTwo, text='salva', command=percorso_real, fg='white')
 percorso.configure(bg='red')
-percorso.place(x='1000')
+percorso.place(x='300')
 
 
 #titolo
 title = tk.StringVar()
-title_label = tk.Label(win, text='2) inserisci titolo', fg='white')
+title_label = tk.Label(frameTwo, text='2) inserisci titolo', fg='white')
 title_label.configure(bg='red')
 title_label.grid(row='2', column='1', pady='50')
-title_entry = tk.Entry(win, textvariable=title)
+title_entry = tk.Entry(frameTwo, textvariable=title)
 title_entry.grid(row='2', column='2', pady='50')
 def title_file():
     f = open(path, "a")
@@ -48,17 +67,17 @@ def title_file():
     f.write('\n<meta charset="UTF-8" />')
     f.close()
 
-title_button = tk.Button(text='salva titolo', command=title_file, fg='white')
+title_button = tk.Button(frameTwo, text='salva titolo', command=title_file, fg='white')
 title_button.configure(bg='red')
 title_button.grid(row='2', column='3')
 
 
 #icona
 icon = tk.StringVar()
-icon_label = tk.Label(text='3) inserisci nome immagine icona', fg='white')
+icon_label = tk.Label(frameTwo, text='3) inserisci nome immagine icona', fg='white')
 icon_label.configure(bg='red')
 icon_label.grid(row='2', column='4', padx='10')
-icon_entry = tk.Entry( textvariable=icon)
+icon_entry = tk.Entry(frameTwo, textvariable=icon)
 icon_entry.grid(row='2', column='5')
 def icon_img():
     f = open(path, "a")
@@ -66,17 +85,17 @@ def icon_img():
     f.write('\n</head>')
     f.close()
 
-icon_button = tk.Button(text='salva icona', command=icon_img, fg='white')
+icon_button = tk.Button(frameTwo, text='salva icona', command=icon_img, fg='white')
 icon_button.configure(bg='red')
 icon_button.grid(row='2', column='6', padx='20')
 
 
 #colore sfondo
 def color_background():
-    cb_label = tk.Label(win, text='inserisci nome colore in inglese', fg='white')
+    cb_label = tk.Label(frameTwo, text='inserisci nome colore in inglese', fg='white')
     cb_label.configure(bg='red')
     cb_label.grid(row='3', column='4')
-    cb_entry = tk.Entry(win, textvariable=cb)
+    cb_entry = tk.Entry(frameTwo, textvariable=cb)
     cb_entry.grid(row='3', column='5')
     fin_cb = cb.get()
     def color_save():
@@ -87,7 +106,7 @@ def color_background():
     cb_button.configure(bg='red')
     cb_button.grid(row='3', column='6')
 
-cb_button = tk.Button(text='4) colore background', command=color_background, fg='white')
+cb_button = tk.Button(frameTwo, text='4) colore background', command=color_background, fg='white')
 cb_button.configure(bg='red')
 cb_button.grid(row='3', column='2', pady='50')
 
@@ -95,20 +114,20 @@ cb_button.grid(row='3', column='2', pady='50')
 #immagine sfondo
 def image_background():
     ib = tk.StringVar()
-    ib_label = tk.Label(win, text='inserisci nome immaggine di sfondo', fg='white')
+    ib_label = tk.Label(frameTwo, text='inserisci nome immaggine di sfondo', fg='white')
     ib_label.configure(bg='red')
     ib_label.grid(row='3', column='8')
-    ib_entry = tk.Entry(win, textvariable=ib)
+    ib_entry = tk.Entry(frameTwo, textvariable=ib)
     ib_entry.grid(row='3', column='9')
     def image_save():
         f = open(path, "a")
         f.write('\n<body style="background-image: url(' + str(ib.get()) + ')">')
         f.close()
-    cb_button = tk.Button(text='salva immaggine sfondo', command=image_save, fg='white')
+    cb_button = tk.Button(frameTwo, text='salva immaggine sfondo', command=image_save, fg='white')
     cb_button.configure(bg='red')
     cb_button.grid(row='3', column='10')
 
-cb_button = tk.Button(text='4) immaggine sfondo', command=image_background, fg='white')
+cb_button = tk.Button(frameTwo, text='4) immaggine sfondo', command=image_background, fg='white')
 cb_button.configure(bg='red')
 cb_button.grid(row='3', column='7', pady='50', padx='30')
 
@@ -163,7 +182,7 @@ def titiolo_paragrafo():
     tp_button.configure(bg='red')
     tp_button.place(y='400', x='750')
 
-titiolo_paragrafob = tk.Button(text='aggiungi titolo paragrafo', command=titiolo_paragrafo, fg='white')
+titiolo_paragrafob = tk.Button(frameTwo, text='aggiungi titolo paragrafo', command=titiolo_paragrafo, fg='white')
 titiolo_paragrafob.configure(bg='red')
 titiolo_paragrafob.grid(row='4', column='1', pady='50', stick='W')
 
@@ -213,7 +232,7 @@ def paragrafo():
     p_button.configure(bg='red')
     p_button.place(y='200', x='500')
 
-paragrafob = tk.Button(text='aggiungi paragrafo', command=paragrafo, fg='white')
+paragrafob = tk.Button(frameTwo, text='aggiungi paragrafo', command=paragrafo, fg='white')
 paragrafob.configure(bg='red')
 paragrafob.grid(row='5', column='1', stick='W')
 
@@ -239,7 +258,7 @@ def immaggine():
     i_button.configure(bg='red')
     i_button.place(y='150', x='50')
 
-immaggineb = tk.Button(text='aggiungi immaggine', command=immaggine, fg='white')
+immaggineb = tk.Button(frameTwo, text='aggiungi immaggine', command=immaggine, fg='white')
 immaggineb.configure(bg='red')
 immaggineb.grid(row='6', column='1', pady='50', stick='W')
 
@@ -272,7 +291,7 @@ def link():
     l_button.configure(bg='red')
     l_button.place(y='150', x='250')
 
-linkb = tk.Button(text='aggiungi link', command=link, fg='white')
+linkb = tk.Button(frameTwo, text='aggiungi link', command=link, fg='white')
 linkb.configure(bg='red')
 linkb.grid(row='7', column='1', stick='W', pady='10')
 
@@ -298,7 +317,7 @@ def video():
     v_button.configure(bg='red')
     v_button.place(y='150', x='250')
 
-videob = tk.Button(text='aggiungi video', command=video, fg='white')
+videob = tk.Button(frameTwo, text='aggiungi video', command=video, fg='white')
 videob.configure(bg='red')
 videob.grid(row='8', column='1', stick='W', pady='30')
 
@@ -325,7 +344,7 @@ def musica():
     m_button.configure(bg='red')
     m_button.place(y='150', x='250')
 
-musicab = tk.Button(text='aggiungi audio', command=musica, fg='white')
+musicab = tk.Button(frameTwo, text='aggiungi audio', command=musica, fg='white')
 musicab.configure(bg='red')
 musicab.grid(row='9', column='1', stick='W')
 
@@ -379,7 +398,7 @@ def elenco_non_numerato():
     eo2_button.configure(bg='red')
     eo2_button.place(y='150', x='700')
 
-elenco_non_numeratob = tk.Button(text='aggiungi elenco non numerato', command=elenco_non_numerato, fg='white')
+elenco_non_numeratob = tk.Button(frameTwo, text='aggiungi elenco non numerato', command=elenco_non_numerato, fg='white')
 elenco_non_numeratob.configure(bg='red')
 elenco_non_numeratob.grid(row='10', column='1', pady='20', stick='W')
 
@@ -434,7 +453,7 @@ def elenco_numerato():
     eo2_button.configure(bg='red')
     eo2_button.place(y='150', x='700')
 
-elenco_numeratob = tk.Button(text='aggiungi elenco numerato', command=elenco_numerato, fg='white')
+elenco_numeratob = tk.Button(frameTwo, text='aggiungi elenco numerato', command=elenco_numerato, fg='white')
 elenco_numeratob.configure(bg='red')
 elenco_numeratob.grid(row='11', column='1', pady='20', stick='W')
 
@@ -499,7 +518,7 @@ def tabella():
     p2_button.configure(bg='red')
     p2_button.place(y='150', x='1050')
 
-tabellab = tk.Button(text='aggiungi tabella', command=tabella, fg='white')
+tabellab = tk.Button(frameTwo, text='aggiungi tabella', command=tabella, fg='white')
 tabellab.configure(bg='red')
 tabellab.grid(row='12', column='1', pady='30', stick='W')
 
@@ -519,7 +538,14 @@ def fine():
 
 fine_button = tk.Button(text='FINE', command=fine, fg='white')
 fine_button.configure(bg='red')
-fine_button.place(x='1800')
+fine_button.place(x='900')
 
+#menu info
+def info():
+    showinfo("INFO HTML & CSS PYTHON GUI DARK VERSION", "Version: 2.0.3\nAuthor: Antonino Buscarino")
+
+menu = tk.Menu(win)
+menu.add_command(label='INFO', command=info)
+win.configure(menu=menu)
 
 win.mainloop()
