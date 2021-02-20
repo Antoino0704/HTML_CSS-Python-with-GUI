@@ -19,7 +19,11 @@ canvars.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 scrollbar = tk.Scrollbar(frameMain, orient=tk.VERTICAL, command=canvars.yview)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
+scrollbar2 = tk.Scrollbar(win, orient=tk.HORIZONTAL, command=canvars.xview)
+scrollbar2.pack(side=tk.BOTTOM, fill=tk.X)
+
 canvars.configure(yscrollcommand=scrollbar.set, bg='black')
+canvars.configure(xscrollcommand=scrollbar2.set)
 canvars.bind('<Configure>', lambda e: canvars.configure(scrollregion=canvars.bbox("all")))
 
 frameTwo = tk.Frame(canvars)
@@ -102,7 +106,7 @@ def color_background():
         f = open(path, "a")
         f.write('\n<body style="background-color: ' + str(cb.get()) + '">')
         f.close()
-    cb_button = tk.Button(text='salva background colore', command=color_save, fg='white')
+    cb_button = tk.Button(frameTwo, text='salva background colore', command=color_save, fg='white')
     cb_button.configure(bg='red')
     cb_button.grid(row='3', column='6')
 
@@ -536,13 +540,13 @@ def fine():
     win.destroy()
 
 
-fine_button = tk.Button(text='FINE', command=fine, fg='white')
+fine_button = tk.Button(frameTwo, text='FINE', command=fine, fg='white')
 fine_button.configure(bg='red')
 fine_button.place(x='900')
 
 #menu info
 def info():
-    showinfo("INFO HTML & CSS PYTHON GUI DARK VERSION", "Version: 2.0.3\nAuthor: Antonino Buscarino")
+    showinfo("INFO HTML & CSS PYTHON GUI DARK VERSION", "Version: 2.2.4\nAuthor: Antonino Buscarino")
 
 menu = tk.Menu(win)
 menu.add_command(label='INFO', command=info)
