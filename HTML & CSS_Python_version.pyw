@@ -18,7 +18,11 @@ canvars.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
 scrollbar = tk.Scrollbar(frameMain, orient=tk.VERTICAL, command=canvars.yview)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
+scrollbar2 = tk.Scrollbar(win, orient=tk.HORIZONTAL, command=canvars.xview)
+scrollbar2.pack(side=tk.BOTTOM, fill=tk.X)
+
 canvars.configure(yscrollcommand=scrollbar.set)
+canvars.configure(xscrollcommand=scrollbar2.set)
 canvars.bind('<Configure>', lambda e: canvars.configure(scrollregion=canvars.bbox("all")))
 
 frameTwo = tk.Frame(canvars)
@@ -470,7 +474,7 @@ fine_button.place(x='900')
 
 #menu info
 def info():
-    showinfo("INFO HTML & CSS PYTHON GUI", "Version: 6.3.4\nAuthor: Antonino Buscarino")
+    showinfo("INFO HTML & CSS PYTHON GUI", "Version: 6.4.4\nAuthor: Antonino Buscarino")
 
 menu = tk.Menu(win)
 menu.add_command(label='INFO', command=info)
